@@ -21,7 +21,7 @@ public class Download extends Thread {
 	
 	public void run() {
 		String messageFromServer, serverChunkMap = "", inFromUser;
-		String filePath = System.getProperty("user.dir") + "\\user_" + fileManager.userNum + "\\";
+		String filePath = System.getProperty("user.dir") + "/user_" + fileManager.userNum + "/";
 		Socket clientSocket;
 		boolean keepConnect = false;
 		long start = 0;
@@ -29,7 +29,7 @@ public class Download extends Thread {
 		
 		while (true) {
 			try {
-				// Case : leecher°¡ ¸ðµç chunk¸¦ ¸ð¾Æ seeder°¡ µÇ¾úÀ» ¶§ ´õÀÌ»ó download¸¦ ÁøÇàÇÏÁö ¾Ê´Â´Ù.
+				// Case : leecherï¿½ï¿½ ï¿½ï¿½ï¿½ chunkï¿½ï¿½ ï¿½ï¿½ï¿½ seederï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì»ï¿½ downloadï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 				if (fileManager.isComplete()) {
 					fileManager.isSeeder = true;
 					FileOutputStream fw = new FileOutputStream(filePath + fileManager.fileName);
@@ -53,9 +53,9 @@ public class Download extends Thread {
 				DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 				DataInputStream inFromServer = new DataInputStream(clientSocket.getInputStream());
 					
-				// ¼±ÅÃµÈ peer¿¡¼­ÀÇ ´Ù¿î·Îµå È½¼ö°¡ 3¹ø ÀÌÇÏÀÏ¶§¸¸ ½ÇÇàµÈ´Ù
+				// ï¿½ï¿½ï¿½Ãµï¿½ peerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½Îµï¿½ È½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½
 				while (numOfDownload < 3) {
-					// Á¦ÀÏ Ã³À½ connectionÀÌ¹Ç·Î chunk mapÀ» ¹Þ¾Æ¿À°Ô µÈ´Ù.
+					// ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ connectionï¿½Ì¹Ç·ï¿½ chunk mapï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
 					if (isFirst) {
 						outToServer.writeUTF(fileManager.fileName);
 						System.out.println("[" + this.getName() + "]" + " Send message requesting chunk map");
@@ -64,7 +64,7 @@ public class Download extends Thread {
 						System.out.println("[" + this.getName() + "]" + " Receive chunk map from server");
 						sleep(1000);
 						
-						// Case : ÇÇ¾î°¡ ³»°¡ ¿øÇÏ´Â ÆÄÀÏÀ» °¡Áö°í ÀÖÁö ¾ÊÀº °æ¿ì ¶Ç´Â ¿¬°áµÈ ÇÇ¾î°¡ ¾ÆÁ÷ Ã»Å©¸ÊÀ» Çü¼ºÇÏÁö ¸øÇÑ °æ¿ì ¿¬°áÀ» ²÷´Â´Ù
+						// Case : ï¿½Ç¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾î°¡ ï¿½ï¿½ï¿½ï¿½ Ã»Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½
 						if (messageFromServer.equals("No file") || messageFromServer.equals("")) {
 							System.out.println("[" + this.getName() + "]" + " No file in server");
 							break;
@@ -72,19 +72,19 @@ public class Download extends Thread {
 						else {
 							serverChunkMap = messageFromServer;
 							
-							// file chunk¸¦ Ã³À½ ¹Þ¾Æ¿À´Â °æ¿ì chunkMap°ú fileChunksÀÇ Å©±â°¡ ÃÊ±âÈ­ ¾Ë¸Â°Ô µÇ¾î ÀÖÁö ¾ÊÀ¸¹Ç·Î ¼³Á¤ÇØÁØ´Ù.
+							// file chunkï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ chunkMapï¿½ï¿½ fileChunksï¿½ï¿½ Å©ï¿½â°¡ ï¿½Ê±ï¿½È­ ï¿½Ë¸Â°ï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 							if (fileManager.isFirst)
 								fileManager.SetSize(serverChunkMap);
 							
-							// ÀÌÈÄ¿¡´Â Æ¯º°ÇÑ ÀÏÀÌ ¾ø´Â ÀÌ»ó Áö±Ý ¿¬°áµÈ ÇÇ¾î·Î ºÎÅÍ ´õÀÌ»ó chunk mapÀ» ¹Þ¾Æ ¿Ã ÇÊ¿ä°¡ ¾øÀ¸¹Ç·Î isFisrt¸¦ false·Î ¼³Á¤
+							// ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì»ï¿½ chunk mapï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ isFisrtï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 							isFirst = false;
 						}
 					}
 					
-					// chunk mapÀ» ¹Þ¾Æ ¿Â µÚ ºÎÅÍÀÇ ¼Û¼ö½Å
+					// chunk mapï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½
 					else {
-						// chunk map¿¡¼­ ¹Þ¾Æ¿Ã chunkÀÇ ÀÎµ¦½º¸¦ ¹ÝÈ¯ÇÏ´Â GetFileIdx()
-						// ÇÊ¿äÇÑ chunk°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é -1À» return.
+						// chunk mapï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ chunkï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ GetFileIdx()
+						// ï¿½Ê¿ï¿½ï¿½ï¿½ chunkï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´Ù¸ï¿½ -1ï¿½ï¿½ return.
 						inFromUser = fileManager.GetChunkIdx(serverChunkMap);
 						
 						// Case : server doesn't have chunk which I need
@@ -115,13 +115,13 @@ public class Download extends Thread {
 						
 						// Case : server has chunk which I need
 						else {
-							// ³»°¡ ÇÊ¿äÇÑ Ã»Å©ÀÇ ÀÎµ¦½º¸¦ Àü¼Û
+							// ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ Ã»Å©ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 							outToServer.writeUTF(inFromUser);
 							System.out.println("[" + this.getName() + "]" + " Send need chunk index");
 							sleep(1000);
 							
 							
-							// ÇÇ¾î¿¡¼­ º¸³»ÁØ file chunk¸¦ chunkFromServer¿¡ ÀúÀå
+							// ï¿½Ç¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ file chunkï¿½ï¿½ chunkFromServerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 							byte[] tempBuffer = new byte[10240];
 							int size = inFromServer.read(tempBuffer);
 							System.out.println("[" + this.getName() + "]" + " Receive need chunk, size : " + size);
@@ -138,7 +138,7 @@ public class Download extends Thread {
 						}
 					}
 				}
-				// Æ¯Á¤ ÇÇ¾î¿Í ¿¬°áÀÌ ²÷¾îÁø °æ¿ì ´Ù¸¥ ÇÇ¾îÀÇ chunk mapÀ» »õ·Î ¹Þ¾Æ¿Í¾ß ÇÏ¹Ç·Î isFirst¸¦ true·Î º¯°æ
+				// Æ¯ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ chunk mapï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¾ï¿½ ï¿½Ï¹Ç·ï¿½ isFirstï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				fileManager.ReleasePeer(selectedNeighbor);
 				isFirst = true;
 				clientSocket.close();

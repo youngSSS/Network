@@ -8,7 +8,7 @@ public class Peer{
 
 	public static void main(String[] args) throws IOException {
 		Scanner S = new Scanner(System.in);
-		String fileName, filePath = System.getProperty("user.dir") + "\\";;
+		String fileName, filePath = System.getProperty("user.dir") + "/";
 		FileManager fileManager = new FileManager();
 		InetAddress myIp = InetAddress.getLocalHost();
 		String[] ipArr = new String[5];
@@ -19,6 +19,9 @@ public class Peer{
 		System.out.println("***************************** Start P2P *****************************");
 		System.out.println(" ___________________________________________________________________");
 		System.out.println("|                           < How to use >                          |");
+		System.out.println("|-------------------------------------------------------------------|");
+		System.out.println("|0. Set the configuration file (change local IP)                    |");
+		System.out.println("|-------------------------------------------------------------------|");
 		System.out.println("|1. Case : Seeder                                                   |");
 		System.out.println("|-> Use 1 for user number                                           |");
 		System.out.println("|-> Enter the file name in the folder where the current code exists |");
@@ -36,6 +39,7 @@ public class Peer{
 		
 		// Get user information
 		BufferedReader is = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filePath + "configuration.txt"))));
+		
 		String text = is.readLine();
 		for (int i = 0; i < 4; i++)
 			text += " " + is.readLine();       
@@ -62,7 +66,7 @@ public class Peer{
 		else {
 			fileManager.setInfo(fileName, userNum);
 			
-			// 0¹ø ÀÎµ¦½ºÀÇ Á¤º¸¸¦ ÀÚ½ÅÀÇ Á¤º¸·Î ¹Ù²Ù¾î ÁØ´Ù
+			// 0ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ ï¿½Ø´ï¿½
 			int tempPort = portArr[userNum - 1];
 			String tempIp = ipArr[userNum - 1];
 			
