@@ -1,16 +1,25 @@
-# P2P Program
-### For more details, read WIKI
+# Introduction
 
-This is the P2P program.
-Seeder shares the target file and leechers download it.
+<img width="207" alt="스크린샷 2020-12-26 오후 1 46 14" src="https://user-images.githubusercontent.com/48302757/103145759-e4825780-4782-11eb-88f8-a74d1297fc8c.png">
+
+This is the P2P program. 
+
+Seeder shares the target file and leechers download it. 
+
 Leecher can share chunck what he has.
 
-0. Create folder with name 'user_usernumber' in folder which configuration.txt exists.
-    - ex) if you are user 5, create folder with name 'user_5'
-1. Write ip and port number of each user at configuration.txt 
-2. Insert user number
-    - If you are seeder, insert 1
+# Usage
+
+### Before start program
+
+1. Create a folder with name "user_[usernumber]" (e.g. user_1) in folder which configuration.txt exists.
+2. Write IP address and port number of each user at configuration.txt
+
+### On program
+
+1. Insert user number
+    - If you are the master seeder, insert 1
     - Otherwise, insert the number without 1
-3. Insert file name
-    - If you are seeder, insert the file name which you want to upload.
-    - Otherwise, insert the file name which you want to download.
+2. Insert file name
+    - If you are the master seeder, insert the file name which you want to upload
+    - Otherwise, insert the file name which you want to download
